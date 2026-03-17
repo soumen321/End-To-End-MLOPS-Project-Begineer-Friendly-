@@ -1,0 +1,38 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/raw/house_data.csv
+      hash: md5
+      md5: 7d0bd4e556936ca769851925befbe513
+      size: 203
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: f281a1a91a118d500d8f73dc0f5d1acb
+      size: 511
+    outs:
+    - path: data/processed/processed_house_data.csv
+      hash: md5
+      md5: fcec9274f3618fc227225ba242632eff
+      size: 205
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/processed_house_data.csv
+      hash: md5
+      md5: fcec9274f3618fc227225ba242632eff
+      size: 205
+    - path: params.yaml
+      hash: md5
+      md5: c65260799036345335e2b9dbfd3ecf14
+      size: 44
+    - path: src/train.py
+      hash: md5
+      md5: 5e63f484c71de0b24b306070b8e5b45d
+      size: 1749
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 480b449568911188837ccb73538e1f7e
+      size: 897
